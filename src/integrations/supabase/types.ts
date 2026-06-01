@@ -126,6 +126,30 @@ export type Database = {
         }
         Relationships: []
       }
+      parking_payment_details: {
+        Row: {
+          created_at: string
+          id: string
+          owner_id: string
+          parking_id: string
+          payment_qr_code: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          owner_id: string
+          parking_id: string
+          payment_qr_code?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          owner_id?: string
+          parking_id?: string
+          payment_qr_code?: string | null
+        }
+        Relationships: []
+      }
       parking_spaces: {
         Row: {
           address: string
@@ -140,7 +164,6 @@ export type Database = {
           longitude: number | null
           owner_id: string
           parking_name: string
-          payment_qr_code: string | null
           status: Database["public"]["Enums"]["parking_status"]
           total_slots: number
         }
@@ -157,7 +180,6 @@ export type Database = {
           longitude?: number | null
           owner_id: string
           parking_name: string
-          payment_qr_code?: string | null
           status?: Database["public"]["Enums"]["parking_status"]
           total_slots?: number
         }
@@ -174,7 +196,6 @@ export type Database = {
           longitude?: number | null
           owner_id?: string
           parking_name?: string
-          payment_qr_code?: string | null
           status?: Database["public"]["Enums"]["parking_status"]
           total_slots?: number
         }
