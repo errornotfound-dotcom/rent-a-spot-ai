@@ -140,6 +140,7 @@ export type Database = {
           longitude: number | null
           owner_id: string
           parking_name: string
+          payment_qr_code: string | null
           status: Database["public"]["Enums"]["parking_status"]
           total_slots: number
         }
@@ -156,6 +157,7 @@ export type Database = {
           longitude?: number | null
           owner_id: string
           parking_name: string
+          payment_qr_code?: string | null
           status?: Database["public"]["Enums"]["parking_status"]
           total_slots?: number
         }
@@ -172,6 +174,7 @@ export type Database = {
           longitude?: number | null
           owner_id?: string
           parking_name?: string
+          payment_qr_code?: string | null
           status?: Database["public"]["Enums"]["parking_status"]
           total_slots?: number
         }
@@ -184,8 +187,8 @@ export type Database = {
           created_at: string
           id: string
           payment_method: string
+          payment_reference: string | null
           payment_status: Database["public"]["Enums"]["payment_status"]
-          razorpay_order_id: string | null
           transaction_id: string | null
           user_id: string
         }
@@ -195,8 +198,8 @@ export type Database = {
           created_at?: string
           id?: string
           payment_method?: string
+          payment_reference?: string | null
           payment_status?: Database["public"]["Enums"]["payment_status"]
-          razorpay_order_id?: string | null
           transaction_id?: string | null
           user_id: string
         }
@@ -206,8 +209,8 @@ export type Database = {
           created_at?: string
           id?: string
           payment_method?: string
+          payment_reference?: string | null
           payment_status?: Database["public"]["Enums"]["payment_status"]
-          razorpay_order_id?: string | null
           transaction_id?: string | null
           user_id?: string
         }
