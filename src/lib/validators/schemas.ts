@@ -35,11 +35,18 @@ export const createParkingSchema = z.object({
   total_slots: z.number().int().min(1).max(10000),
   amenities: z.array(z.string().trim().max(40)).max(20).default([]),
   images: z.array(z.string().trim().max(500)).max(10).default([]),
-  payment_qr_code: z.string().trim().max(500).optional().or(z.literal("")),
 });
 
 export const updateParkingSchema = createParkingSchema.partial().extend({
   id: z.string().uuid(),
+});
+
+// Payment QR codes live in a separate, access-controlled table
+// (parking_payment_details). Only the owner can write; owners, admins and
+// drivers who booked the parking can read it.
+export const upsertPaymentQrSchema = z.object({
+  parking_id: z.string().uuid(),
+  payment_qr_code: z.string().trim().max(500).optional().or(z.literal("")),
 });
 
 export const searchParkingSchema = z.object({
