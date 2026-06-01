@@ -140,6 +140,7 @@ export type Database = {
           longitude: number | null
           owner_id: string
           parking_name: string
+          payment_qr_code: string | null
           status: Database["public"]["Enums"]["parking_status"]
           total_slots: number
         }
@@ -156,6 +157,7 @@ export type Database = {
           longitude?: number | null
           owner_id: string
           parking_name: string
+          payment_qr_code?: string | null
           status?: Database["public"]["Enums"]["parking_status"]
           total_slots?: number
         }
@@ -172,6 +174,7 @@ export type Database = {
           longitude?: number | null
           owner_id?: string
           parking_name?: string
+          payment_qr_code?: string | null
           status?: Database["public"]["Enums"]["parking_status"]
           total_slots?: number
         }
@@ -184,8 +187,8 @@ export type Database = {
           created_at: string
           id: string
           payment_method: string
+          payment_reference: string | null
           payment_status: Database["public"]["Enums"]["payment_status"]
-          razorpay_order_id: string | null
           transaction_id: string | null
           user_id: string
         }
@@ -195,8 +198,8 @@ export type Database = {
           created_at?: string
           id?: string
           payment_method?: string
+          payment_reference?: string | null
           payment_status?: Database["public"]["Enums"]["payment_status"]
-          razorpay_order_id?: string | null
           transaction_id?: string | null
           user_id: string
         }
@@ -206,8 +209,8 @@ export type Database = {
           created_at?: string
           id?: string
           payment_method?: string
+          payment_reference?: string | null
           payment_status?: Database["public"]["Enums"]["payment_status"]
-          razorpay_order_id?: string | null
           transaction_id?: string | null
           user_id?: string
         }
@@ -298,12 +301,45 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_booking: {
+        Args: {
+          _end_time: string
+          _parking_id: string
+          _start_time: string
+          _vehicle_number: string
+        }
+        Returns: {
+          booking_date: string
+          booking_status: Database["public"]["Enums"]["booking_status"]
+          created_at: string
+          end_time: string
+          entry_validated_at: string | null
+          exit_validated_at: string | null
+          id: string
+          parking_id: string
+          qr_code: string | null
+          start_time: string
+          total_amount: number
+          user_id: string
+          vehicle_number: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "bookings"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      recompute_parking_slots: {
+        Args: { _parking_id: string }
+        Returns: undefined
       }
     }
     Enums: {
